@@ -1,0 +1,21 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  security-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      # Your security scan steps here...
+      
+      - name: Upload results
+        uses: actions/upload-artifact@v4  # Note: using v4, not v3
+        with:
+          name: security-results
+          path: ./scan-results/
